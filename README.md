@@ -16,7 +16,7 @@ Download iperf3 and copy and past all the files into folder 'bin'.
  
 The folder already contains two script files. The script files are used to terminate the process using a specific port in both 'Windows' and 'Linux'. For some reason the code is not able to terminate the 'iperf' subprocess while running in 'Linux'.
 To terminate the process using a specific port, in the command line type:
->> bash  ./KillPortProcessLinux.sh PORT
+> bash  ./KillPortProcessLinux.sh PORT
 
 The following packages are needed to run the code:
 time, os, tkinter, socket, re, threading, platform, tempfile, subprocess, numpy, matplotlib, collections, math
