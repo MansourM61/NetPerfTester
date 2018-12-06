@@ -1,7 +1,5 @@
 # NetPerfTester
-Network Connection Performance Tester
-
-A GUI for iperf
+Network Connection Performance Tester, a GUI for iperf
 
 This Python script is compatible with Python 3.7. the module provides required GUI to analyze network  performance using 'iperf version 2' for 'Linux' and 'iperf version 3' for 'Windows'.
 
