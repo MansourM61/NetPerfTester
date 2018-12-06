@@ -4,7 +4,7 @@
 
 Network Connection Performance Tester, a GUI for iperf
 
-This Python script is compatible with Python 3.7. the module provides required GUI to analyze network  performance using 'iperf version 2' for 'Linux' and 'iperf version 3' for 'Windows'.
+This Python script is compatible with Python 3.7. The module provides required GUI to analyze network performance using 'iperf version 2' for 'Linux' and 'iperf version 3' for 'Windows'. The measurement parameters are 'Transfer Bytes', 'Bandwidth', 'Jitter', and 'Packet Error Rate (PER)'. The GUI also provides 'Log' feature for saving the measurement into a CSV format file.
 
 The bandwidth gauge widget is from:
 https://github.com/NickWaterton/iperf3-GUI
