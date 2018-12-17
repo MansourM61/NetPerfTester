@@ -42,13 +42,13 @@ bg = 'black'
 
 
 ###############################################################################
-DEF_IP_ADD = '127.0.0.1'  # default destination ip address
-DEF_PORT_NUM = 5001  # default port number
+DEF_IP_ADD = '192.168.0.2'  # default destination ip address
+DEF_PORT_NUM = 5201  # default port number
 MAX_PORT_NUM = 65535  # maximum port number
 DEF_DUR = 10  # default duration (sec)
 DEF_INT = 1  # default interval (sec)
 SPEED_GAUGE_MAX = 2.5  # gauge meter max range (Gbits/sec)
-MAX_QUE = 5  # curve length
+MAX_QUE = 10  # curve length
 TIME_DELAY = 100  # loop delay time (ms)
 ###############################################################################
 
@@ -297,7 +297,7 @@ class WinApp(Frame):
         self.OSName = system_name().lower()
         self.cwd = os.getcwd()
 
-        IPPatt = '[0-9]+.[0-9]+.[0-9]+.[0-9]+$'
+        IPPatt = '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'
         self.IPPattern = re.compile(IPPatt)
 
         dataPattern = "\[\s*\d*\]\s*\d*.\d*-\d*.\d*"
@@ -937,6 +937,8 @@ class WinApp(Frame):
         if(self.measInProg == False): # start is pressed
             
             self.std_output.Print('Starting the analyser...', fg, bg, style)
+
+            self.recFileName = self.fileName.get()
             
             self.measInProg = True           
             self.measBtn.config(text='Stop')
@@ -1423,7 +1425,14 @@ class WinApp(Frame):
 
             lost = Val[11]
             total = Val[12]
-            PER = (1.0*lost)/(1.0*total)
+            
+            try:
+                PER = (1.0*lost)/(1.0*total)
+                pass
+            except:
+                PER = 0.0
+                pass
+                
 
             if(self.currCurveLen == MAX_QUE):
                 self.trnsCurve.pop()
@@ -1433,7 +1442,7 @@ class WinApp(Frame):
                 pass
 
             if(self.recFH is not None):
-                self.recFH.write('%f,%f,%f,%f,%d,%d\n' % 
+                self.recFH.write('%f,%f,%f,%d,%d,%f\n' % 
                                  (trnsVal, BWVal, Jitter, lost, total, PER))
                 self.recFH.flush()
                 pass
